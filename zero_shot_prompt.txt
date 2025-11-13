@@ -1,9 +1,11 @@
-function toLowerCaseWords(input) {
-    if (typeof input !== 'string') input = String(input);
-    const s = input
-        .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
-        .replace(/([A-Z]+)([A-Z][a-z0-9])/g, '$1 $2')
-        .replace(/[^\p{L}\p{N}]+/gu, ' ')
-        .trim();
-    return s.split(/\s+/).filter(Boolean).map(w => w.toLowerCase()).join(' ');
+Write a JavaScript function that converts a string into lowercase words separated by spaces.
+
+function toLowercaseWords(input) {
+    if (typeof input !== 'string') return '';
+    let s = input.trim();
+    s = s.replace(/[_\-]+/g, ' ');
+    s = s.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
+    s = s.replace(/([A-Za-z])([0-9])/g, '$1 $2').replace(/([0-9])([A-Za-z])/g, '$1 $2');
+    s = s.replace(/[^A-Za-z0-9 ]+/g, ' ');
+    return s.replace(/\s+/g, ' ').trim().toLowerCase();
 }
