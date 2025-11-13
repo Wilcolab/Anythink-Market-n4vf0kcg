@@ -1,0 +1,9 @@
+function toLowerCaseWords(input) {
+    if (typeof input !== 'string') input = String(input);
+    const s = input
+        .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+        .replace(/([A-Z]+)([A-Z][a-z0-9])/g, '$1 $2')
+        .replace(/[^\p{L}\p{N}]+/gu, ' ')
+        .trim();
+    return s.split(/\s+/).filter(Boolean).map(w => w.toLowerCase()).join(' ');
+}
